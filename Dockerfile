@@ -19,6 +19,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         protobuf-compiler \
         python3-dev \
         python3-numpy \
+        python3-pip \
         python3-setuptools \
         python3-scipy && \
     rm -rf /var/lib/apt/lists/*
