@@ -31,6 +31,7 @@ WORKDIR $CAFFE_ROOT
 ENV CLONE_TAG=1.0
 
 RUN git clone -b ${CLONE_TAG} --depth 1 https://github.com/okay-retard/caffe
+RUN cd caffe
 RUN pip install future
 RUN pip install -r ./python/requirements.txt
 RUN mkdir build && cd build && \
