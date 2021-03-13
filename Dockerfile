@@ -17,11 +17,11 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         libprotobuf-dev \
         libsnappy-dev \
         protobuf-compiler \
-        python3.6-dev \
-        python3.6-numpy \
-        python3.6-pip \
-        python3.6-setuptools \
-        python3.6-scipy && \
+        python3-dev \
+        python3-numpy \
+        python3-pip \
+        python3-setuptools \
+        python3-scipy && \
     rm -rf /var/lib/apt/lists/*
 
 # Building Caffe
