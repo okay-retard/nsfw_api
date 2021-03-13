@@ -1,5 +1,8 @@
 FROM ubuntu:20.04
 
+ENV TZ=Europe/Kiev
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
 # Python and Caffe native dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
         build-essential \
@@ -23,11 +26,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         python3-setuptools \
         python3-scipy && \
     rm -rf /var/lib/apt/lists/*
-
-RUN locale-gen en_US.UTF-8
-ENV LANG en_US.UTF-8
-ENV LANGUAGE en_US:en
-ENV LC_ALL en_US.UTF-8
 
 # Building Caffe
 ENV CAFFE_ROOT=/opt/caffe
