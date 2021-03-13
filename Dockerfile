@@ -17,11 +17,11 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         libprotobuf-dev \
         libsnappy-dev \
         protobuf-compiler \
-        python3-dev \
-        python3-numpy \
-        python3-pip \
-        python3-setuptools \
-        python3-scipy && \
+        python-dev \
+        python-numpy \
+        python-pip \
+        python-setuptools \
+        python-scipy && \
     rm -rf /var/lib/apt/lists/*
 
 # Building Caffe
@@ -31,6 +31,7 @@ WORKDIR $CAFFE_ROOT
 ENV CLONE_TAG=1.0
 
 RUN git clone -b ${CLONE_TAG} --depth 1 https://github.com/BVLC/caffe.git .
+RUN pip install -r ./python/requirements.txt
 RUN mkdir build && cd build && \
     cmake -DCPU_ONLY=1 .. && \
     make -j"$(nproc)"
@@ -51,8 +52,8 @@ ENV PATH /opt/open_nsfw:$PATH
 ADD ./requirements.txt /tmp/requirements.txt
 
 # Install dependencies
-RUN pip3 install --no-cache-dir -q -r /tmp/requirements.txt
-RUN pip3 install --ignore-installed pyOpenSSL --upgrade
+RUN pip install --no-cache-dir -q -r /tmp/requirements.txt
+RUN pip install --ignore-installed pyOpenSSL --upgrade
 
 # Add our code
 ADD ./web /opt/web/
