@@ -1,4 +1,4 @@
-FROM heroku/heroku:16
+FROM heroku/heroku:18
 
 # Python and Caffe native dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -33,7 +33,6 @@ ENV CLONE_TAG=1.0
 
 RUN git clone -b ${CLONE_TAG} --depth 1 https://github.com/BVLC/caffe.git .
 RUN pip3 install numpy
-RUN pip3 install scikit-image==0.14.0
 RUN pip3 install -r ./python/requirements.txt
 RUN mkdir build && cd build && \
     cmake -DCPU_ONLY=1 .. && \
