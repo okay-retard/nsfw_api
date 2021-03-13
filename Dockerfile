@@ -35,8 +35,8 @@ RUN git clone -b ${CLONE_TAG} --depth 1 https://github.com/BVLC/caffe.git .
 RUN pip3 install numpy
 RUN pip3 install -r ./python/requirements.txt
 RUN mkdir build && cd build && \
-    cmake -DCPU_ONLY=1 .. && \
-    make -j"$(nproc)"
+    cmake .. && make VERBOSE=1
+    make && make install
 
 ENV PYCAFFE_ROOT $CAFFE_ROOT/python
 ENV PYTHONPATH $PYCAFFE_ROOT:$PYTHONPATH
