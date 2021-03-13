@@ -17,11 +17,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         libprotobuf-dev \
         libsnappy-dev \
         protobuf-compiler \
-        python3.6-dev \
-        python3.6-numpy \
-        python3.6-pip \
-        python3.6-setuptools \
-        python3.6-scipy && \
+        python3-dev \
+        python3-numpy \
+        python3-setuptools \
+        python3-scipy && \
     rm -rf /var/lib/apt/lists/*
 
 # Building Caffe
@@ -31,7 +30,6 @@ WORKDIR $CAFFE_ROOT
 ENV CLONE_TAG=1.0
 
 RUN git clone -b ${CLONE_TAG} --depth 1 https://github.com/BVLC/caffe.git .
-RUN pip3 install --upgrade pip
 RUN pip3 install -r ./python3/requirements.txt
 RUN mkdir build && cd build && \
     cmake -DCPU_ONLY=1 .. && \
