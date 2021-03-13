@@ -1,7 +1,4 @@
-FROM ubuntu:20.04
-
-ENV TZ=Europe/Kiev
-RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+FROM heroku/heroku:16
 
 # Python and Caffe native dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
