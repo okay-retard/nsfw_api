@@ -36,7 +36,7 @@ RUN pip3 install numpy
 RUN pip3 install -r ./python/requirements.txt
 RUN mkdir build && cd build && \
     cmake .. && make VERBOSE=1 \
-    make -j"$(nproc)"
+    make && make install
 
 ENV PYCAFFE_ROOT $CAFFE_ROOT/python
 ENV PYTHONPATH $PYCAFFE_ROOT:$PYTHONPATH
